@@ -87,6 +87,10 @@ dependencies {
 //    implementation(project(":feature:otp:otp-data"))
 //    implementation(project(":feature:otp:otp-domain"))
 
+    implementation(project(":features:cities-module:city-ui"))
+    implementation(project(":features:cities-module:city-data"))
+    implementation(project(":features:cities-module:city-domain"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
