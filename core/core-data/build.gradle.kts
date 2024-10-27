@@ -19,9 +19,9 @@ android {
     buildTypes {
         defaultConfig {
             // Default configuration options
-            buildConfigField("String", "BASE_URL", "https://api.openweathermap.org/data/2.5/")
-            buildConfigField("String", "ICONS_URL", "https://openweathermap.org/img/wn/")
-            buildConfigField("String", "APP_KEY", "521771166646bed44b72d66075166ff1")
+            buildConfigField("String", "BASE_URL", "\"https://api.openweathermap.org/data/2.5/\"")
+            buildConfigField("String", "ICONS_URL", "\"https://openweathermap.org/img/wn/\"")
+            buildConfigField("String", "APP_KEY", "\"521771166646bed44b72d66075166ff1\"")
         }
     }
     compileOptions {
