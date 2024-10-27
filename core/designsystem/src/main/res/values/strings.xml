@@ -1,0 +1,27 @@
+<resources>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="title_drawer_header">Care Recipients</string>
+    <string name="description_drawer_header">Choose your care recipient from the list</string>
+
+    <string name="empty_list_header_message">"Nothing here yet!"</string>
+    <string name="empty_screen_show_an_example">"Show guides"</string>
+    <string name="choose_picture">"Choose picture"</string>
+
+    <string name="set_reminder">"Set reminder"</string>
+    <string name="reminder_less_than_minutes_left">"Less than %d minutes left, remind me:"</string>
+    <string name="reminder_less_than_hour_left">"Less than %d hour left, remind me:"</string>
+    <string name="reminder_less_than_hours_left">"Less than %d hours left, remind me:"</string>
+    <string name="reminder_more_than_hours_left">"More than %d hours left, remind me:"</string>
+    <string name="reminder_minutes_before">"Minutes Before"</string>
+    <string name="reminder_hour_before">"Hour Before"</string>
+    <string name="reminder_hours_before">"Hours Before"</string>
+
+    <string name="delete_forever">"Delete forever"</string>
+    <string name="add_new_generic">"Add New %s"</string>
+    <string name="edit_generic">"Edit %s"</string>
+    <string name="shopping_item_title">"Shopping Item"</string>
+    <string name="shopping_item_delete">"shopping item(s)"</string>
+    <string name="no_picture_uploaded">"No picture uploaded"</string>
+    <string name="no_description">"No description entered"</string>
+</resources>

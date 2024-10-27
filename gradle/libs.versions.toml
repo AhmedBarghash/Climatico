@@ -1,0 +1,124 @@
+[versions]
+accompanistPermissions = "0.29.2-rc"
+agp = "8.4.2"
+autoService = "1.0-rc7"
+kotlin = "1.9.23"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+lifecycleRuntimeKtx = "2.8.3"
+activityCompose = "1.9.0"
+composeBom = "2024.06.00"
+coil = "2.4.0"
+navHostVersion ="2.7.7"
+composeMaterial = "1.3.1"
+gson = "2.10.1"
+ok2curl = "0.8.0"
+okhttp = "5.0.0-alpha.11"
+retrofit = "2.9.0"
+timber = "5.0.1"
+# hilt versions
+hilt = "2.49"
+androidxHiltNavigationCompose = "1.2.0"
+
+coroutines = "1.7.3"
+chucker = "4.0.0"
+androidxAppCompat = "1.7.0"
+gradle = "7.3.1"
+
+# rx versions
+material = "1.12.0"
+jetbrainsKotlinJvm = "1.9.23"
+securityCryptoKtx = "1.1.0-alpha06"
+lifecycleRuntimeComposeAndroid = "2.8.3"
+securityCryptoKtxVersion = "1.0.0"
+
+
+
+
+[libraries]
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-security-crypto-ktx = { group = "androidx.security", name = "security-crypto-ktx", version.ref = "securityCryptoKtx" }
+auto-service = { module = "com.google.auto.service:auto-service", version.ref = "autoService" }
+security-crypto-ktx = { group = "androidx.security", name = "security-crypto-ktx", version.ref = "securityCryptoKtxVersion" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+coil ={group ="io.coil-kt", name ="coil-compose",version.ref = "coil"}
+
+# ------------------------------------------ retrofit & Network ------------------------------------
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofitConverterGson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+ok2curl = { group = "com.github.mrmike", name = "ok2curl", version.ref = "ok2curl" }
+okhttpCore = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+loggingInterceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+# ------------------------------------------ hilt --------------------------------------------------
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
+# ------------------------------------------ kotlin ------------------------------------------------
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+# ------------------------------------------ coroutines --------------------------------------------
+coroutinesAndroid = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+# ------------------------------------------ navigation --------------------------------------------
+navhost = {group= "androidx.navigation",name="navigation-compose", version.ref ="navHostVersion"}
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
+
+androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
+
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
+chucker = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+
+androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
+
+# --------------------------------------------------------------------------------------------------
+# ------------------------------------------ plugins -----------------------------------------------
+# --------------------------------------------------------------------------------------------------
+
+[plugins]
+android-library = { id = "com.android.library", version.ref = "gradle" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+# --------------------------------------------------------------------------------------------------
+# ------------------------------------------ bundles -----------------------------------------------
+# --------------------------------------------------------------------------------------------------
+
+[bundles]
+kotlin = ["kotlin-reflection", "kotlin-stdlib", ]
+hilt = ["hilt-android", "hilt-compiler"]
+
+network = [
+    "loggingInterceptor",
+    "ok2curl",
+    "okhttpCore",
+    "retrofit",
+    "retrofitConverterGson"
+]
