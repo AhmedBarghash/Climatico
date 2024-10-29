@@ -39,27 +39,17 @@ fun SelectCityScreenContent(
 
     if (citiesStates.cities.isEmpty().not()) {
         FilterableDropdownMenu(citiesStates.cities, onItemClicked = {
-            citiesViewModel.setSelectedCity(it)
-        }) {
-            //  citiesViewModel.setSelectedCity(it)
-        }
-    }
-
-    if (citiesStates.selectedCity != null) {
-        navigateToCurrentWeatherView(citiesStates.selectedCity!!)
+            navigateToCurrentWeatherView(citiesStates.selectedCity!!)
+        })
     }
 }
 
 @Composable
-fun FilterableDropdownMenu(
-    cities: ArrayList<City>,
-    onItemClicked: (item: City) -> Unit,
-    onSearchValueChange: (value: String) -> Unit
-) {
+fun FilterableDropdownMenu(cities: ArrayList<City>, onItemClicked: (item: City) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
     var textState by remember { mutableStateOf(TextFieldValue()) }
     val filteredItems = cities.filter {
-        it.cityNameEn!!.contains(textState.text, ignoreCase = true)
+        it.cityNameEn.contains(textState.text, ignoreCase = true)
     }
 
     Column {
@@ -67,7 +57,6 @@ fun FilterableDropdownMenu(
             value = textState,
             onValueChange = {
                 textState = it
-                onSearchValueChange(it.text)
                 expanded = true
             },
             label = { Text("Search") },
@@ -99,7 +88,7 @@ fun FilterableDropdownMenu(
                             expanded = false
                         },
                         modifier = Modifier.fillMaxWidth(),
-                        text = { item.cityNameEn?.let { Text(it) } }
+                        text = { item.cityNameEn.let { Text(it) } }
                     )
                 }
             }

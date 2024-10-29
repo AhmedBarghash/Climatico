@@ -4,15 +4,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.developerx.models.WeatherCharacteristics
-import io.reactivex.Observable
+import com.developerx.models.LocalWeatherCharacteristics
 
 @Dao
 interface HistoricalWeatherBroadcastDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(weatherCharacteristics: WeatherCharacteristics): Long
+    suspend fun insert(localWeatherCharacteristics: LocalWeatherCharacteristics): Long
 
-    @Query("SELECT * FROM weather_history_Characteristics")
-    fun getWeatherHistory(): Observable<List<WeatherCharacteristics>>
+    @Query("SELECT * FROM weather_history_Characteristics ORDER BY cityId DESC LIMIT 1")
+    suspend fun getWeatherHistory(): LocalWeatherCharacteristics
 }

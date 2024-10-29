@@ -54,10 +54,9 @@ dependencies {
     implementation( libs.androidx.room.rxjava2)
     kapt(libs.androidx.room.compiler)
 
-    implementation(project(":features:models"))
     implementation(project(":core:common"))
-    implementation(project(":core:core-data"))
 
+    implementation(project(":features:weather-history-module:models"))
     implementation(project(":features:weather-history-module:historical-broadcast-domain"))
 
     testImplementation(libs.junit)

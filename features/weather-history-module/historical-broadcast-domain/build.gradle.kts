@@ -25,6 +25,12 @@ android {
             )
         }
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/gradle/incremental.annotation.processors"
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
@@ -43,7 +49,7 @@ dependencies {
 
     api(project(":core:core-domain"))
     implementation(project(":core:common"))
-    implementation(project(":features:models"))
+    implementation(project(":features:weather-history-module:models"))
 
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)

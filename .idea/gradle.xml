@@ -20,11 +20,11 @@
             <option value="$PROJECT_DIR$/features/cities-module/city-data" />
             <option value="$PROJECT_DIR$/features/cities-module/city-domain" />
             <option value="$PROJECT_DIR$/features/cities-module/city-ui" />
-            <option value="$PROJECT_DIR$/features/models" />
             <option value="$PROJECT_DIR$/features/weather-history-module" />
             <option value="$PROJECT_DIR$/features/weather-history-module/historical-broadcast-data" />
             <option value="$PROJECT_DIR$/features/weather-history-module/historical-broadcast-domain" />
             <option value="$PROJECT_DIR$/features/weather-history-module/historical-broadcast-ui" />
+            <option value="$PROJECT_DIR$/features/weather-history-module/models" />
             <option value="$PROJECT_DIR$/features/weather-module" />
             <option value="$PROJECT_DIR$/features/weather-module/selected-city-weather-broadcast-data" />
             <option value="$PROJECT_DIR$/features/weather-module/selected-city-weather-broadcast-domain" />

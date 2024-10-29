@@ -74,7 +74,7 @@ dependencies {
 
     /* Projects */
 
-    implementation(project(":features:models"))
+    implementation(project(":features:weather-history-module:models"))
     implementation(project(":models"))
     implementation(project(":core:common"))
     implementation(project(":core:core-data"))

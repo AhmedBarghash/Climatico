@@ -29,11 +29,8 @@ class CitiesViewModel @Inject constructor(
     val state: StateFlow<CitiesScreenStates> = store.state
 
     fun setSelectedCity(city: City) {
+        store.dispatch(CitiesScreenActions.SetLoadingValue(false))
         store.dispatch(CitiesScreenActions.SetSelectedCity(city))
-    }
-
-    fun setSearchValueText(searchValueText: String) {
-        store.dispatch(CitiesScreenActions.SearchCityValue(searchValueText))
     }
 
     fun loadCities() {

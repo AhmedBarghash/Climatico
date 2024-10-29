@@ -67,6 +67,7 @@ dependencies {
     implementation(project(":features:weather-module:selected-city-weather-broadcast-domain"))
 
     implementation("com.github.bumptech.glide:glide:4.15.0")
+    implementation(project(":features:weather-history-module:models"))
     kapt ("com.github.bumptech.glide:compiler:4.15.0")
 
     // Lifecycle

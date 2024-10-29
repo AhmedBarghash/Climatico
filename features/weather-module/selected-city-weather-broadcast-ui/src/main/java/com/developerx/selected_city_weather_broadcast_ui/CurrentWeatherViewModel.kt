@@ -6,6 +6,10 @@ import com.developerx.base.mvi.Store
 import com.developerx.core.common.AppError
 import com.developerx.core.common.onError
 import com.developerx.core.common.onSuccess
+import com.developerx.models.LocalWeatherCharacteristics
+import com.developerx.models.dto.CurrentWeatherResponse
+import com.developerx.models.dto.Main
+import com.developerx.models.dto.Weather
 import com.developerx.selected_city_weather_broadcast_domain.usecase.GetCurrentWeatherDataUseCase
 import com.developerx.selected_city_weather_broadcast_domain.usecase.GetWeekBoardCastBasedOnLocation
 import com.developerx.selected_city_weather_broadcast_ui.city_ui_states.CurrentWeatherScreenActions
@@ -29,16 +33,6 @@ class CurrentWeatherViewModel @Inject constructor(
 
     val state: StateFlow<CurrentWeatherScreenStates> = store.state
 
-    fun loadData() = listOf(
-        DailyForecast("Mon", "Sunny", "25°C"),
-        DailyForecast("Tue", "Cloudy", "22°C"),
-        DailyForecast("Wed", "Rainy", "20°C"),
-        DailyForecast("Thu", "Stormy", "18°C"),
-        DailyForecast("Fri", "Sunny", "26°C"),
-        DailyForecast("Sat", "Windy", "23°C"),
-        DailyForecast("Sun", "Foggy", "21°C")
-    )
-
     fun fetchWeatherDataBasedOnCoordinates(lat: Double, lon: Double) {
         store.dispatch(CurrentWeatherScreenActions.SetLoadingValue(true))
         viewModelScope.launch {
@@ -50,6 +44,27 @@ class CurrentWeatherViewModel @Inject constructor(
                 it.onError { error -> handleError(error) }
             }
         }
+    }
+
+    fun setWeatherData(localWeatherCharacteristics: LocalWeatherCharacteristics) {
+        store.dispatch(
+            CurrentWeatherScreenActions.SetCurrentWeather(
+                mapWeatherDataTOSaveItInDatabase(localWeatherCharacteristics)
+            )
+        )
+        fetchWeekBroadcast(localWeatherCharacteristics.lat, localWeatherCharacteristics.lon)
+    }
+
+    private fun mapWeatherDataTOSaveItInDatabase(localWeatherCharacteristics: LocalWeatherCharacteristics): CurrentWeatherResponse {
+        return CurrentWeatherResponse(
+            name = localWeatherCharacteristics.name,
+            weather = arrayListOf(Weather(main = localWeatherCharacteristics.weatherStatus)),
+            main = Main(
+                tempMax = localWeatherCharacteristics.tempMax.toDouble(),
+                tempMin = localWeatherCharacteristics.tempMin.toDouble(),
+                temp = localWeatherCharacteristics.currentTemp.toDouble()
+            )
+        )
     }
 
     private fun fetchWeekBroadcast(lat: Double, lon: Double) {
@@ -78,5 +93,3 @@ class CurrentWeatherViewModel @Inject constructor(
         store.dispatch(CurrentWeatherScreenActions.ShowError(error.toString()))
     }
 }
-
-data class DailyForecast(val date: String, val weather: String, val temperature: String)

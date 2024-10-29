@@ -9,29 +9,39 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.developerx.models.dto.BroadCastWeather
+import com.developerx.models.dto.City
+import com.developerx.models.dto.CurrentWeatherResponse
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 @Composable
-fun CurrentWeatherScreen(currentWeatherViewModel: CurrentWeatherViewModel = hiltViewModel()) {
+fun CurrentWeatherScreen(
+    currentWeatherViewModel: CurrentWeatherViewModel = hiltViewModel(),
+    onLunchEffectCallBack: () -> Unit
+) {
     val currentWeatherStates by currentWeatherViewModel.state.collectAsStateWithLifecycle()
+
+    LaunchedEffect(Unit) {
+        // Save The Data
+        onLunchEffectCallBack()
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -46,7 +56,7 @@ fun CurrentWeatherScreen(currentWeatherViewModel: CurrentWeatherViewModel = hilt
             currentWeatherStates.currentWeatherData?.name?.let {
                 Text(
                     text = it,
-                    style =MaterialTheme.typography.bodyLarge.copy(fontSize = 24.sp),
+                    style = MaterialTheme.typography.bodyLarge.copy(fontSize = 24.sp),
                     textAlign = TextAlign.Center
                 )
             }
@@ -65,6 +75,7 @@ fun CurrentWeatherScreen(currentWeatherViewModel: CurrentWeatherViewModel = hilt
                     style = MaterialTheme.typography.bodyLarge.copy(fontSize = 90.sp)
                 )
                 Text(
+
                     text = "°",
                     style = MaterialTheme.typography.bodyMedium.copy(
                         color = Color.White,
@@ -81,10 +92,17 @@ fun CurrentWeatherScreen(currentWeatherViewModel: CurrentWeatherViewModel = hilt
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(vertical = 16.dp)
         ) {
+            currentWeatherStates.currentWeatherData?.weather?.get(0)?.icon.let {
+                val url = BuildConfig.ICONS_URL + it + ".png"
+                GlideImage(url, Modifier.size(100.dp))
+            }
+            Spacer(modifier = Modifier.padding(16.dp))
+
             currentWeatherStates.currentWeatherData?.weather?.get(0)?.main.let {
+
                 Text(
                     text = it.toString(),
-                    style = MaterialTheme.typography.bodyLarge.copy(color = Color.White)
+                    style = MaterialTheme.typography.bodyLarge
                 )
             }
             currentWeatherStates.currentWeatherData?.main?.let {
@@ -92,13 +110,13 @@ fun CurrentWeatherScreen(currentWeatherViewModel: CurrentWeatherViewModel = hilt
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = it.tempMax.toString(),
-                        style = MaterialTheme.typography.bodyMedium.copy(color = Color.White),
+                        text = "H: ${it.tempMax.toString()}",
+                        style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(end = 8.dp)
                     )
                     Text(
-                        text = it.tempMin.toString(),
-                        style = MaterialTheme.typography.bodyMedium.copy(color = Color.White)
+                        text = "L: ${it.tempMin.toString()}",
+                        style = MaterialTheme.typography.bodyMedium
                     )
                 }
             }
@@ -131,7 +149,7 @@ fun DailyForecastItem(forecast: BroadCastWeather) {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         forecast.weather[0].icon.let {
-            val url = BuildConfig.ICONS_URL + it+".png"
+            val url = BuildConfig.ICONS_URL + it + ".png"
             GlideImage(url)
         }
         Text(text = formatDate(forecast.dtTxt.toString()))
@@ -141,27 +159,28 @@ fun DailyForecastItem(forecast: BroadCastWeather) {
 }
 
 @Composable
-fun GlideImage(url: String) {
-    val context = LocalContext.current
-
+fun GlideImage(url: String, modifier: Modifier = Modifier) {
     AndroidView(
-        modifier = Modifier.size(40.dp),
+        modifier = modifier.size(40.dp),
         factory = { context ->
-        // Create an ImageView
-        ImageView(context).apply {
-            Glide.with(context)
-                .load(url)
-                .into(object : CustomTarget<Drawable>() {
-                    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-                        setImageDrawable(resource)
-                    }
+            // Create an ImageView
+            ImageView(context).apply {
+                Glide.with(context)
+                    .load(url)
+                    .into(object : CustomTarget<Drawable>() {
+                        override fun onResourceReady(
+                            resource: Drawable,
+                            transition: Transition<in Drawable>?
+                        ) {
+                            setImageDrawable(resource)
+                        }
 
-                    override fun onLoadCleared(placeholder: Drawable?) {
-                        setImageDrawable(placeholder)
-                    }
-                })
-        }
-    })
+                        override fun onLoadCleared(placeholder: Drawable?) {
+                            setImageDrawable(placeholder)
+                        }
+                    })
+            }
+        })
 }
 
 fun formatDate(dateString: String): String {
@@ -175,8 +194,11 @@ fun formatDate(dateString: String): String {
     // Format the date to the desired output format
     return outputFormat.format(date)
 }
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewWeatherScreen() {
-    CurrentWeatherScreen()
+    CurrentWeatherScreen{
+
+    }
 }

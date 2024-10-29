@@ -2,6 +2,8 @@ package com.developerx.historical_weather_broadcast_data.di
 
 import android.content.Context
 import androidx.room.Room
+import com.developerx.historical_broadcast_domain.repositories.HistoricalWeatherBroadcastRepository
+import com.developerx.historical_weather_broadcast_data.repositories.HistoricalWeatherBroadcastRepositoryImpl
 import com.developerx.historical_weather_broadcast_data.soruce.HistoricalWeatherBroadcastDao
 import com.developerx.historical_weather_broadcast_data.soruce.WeatherDataBase
 import dagger.Module
@@ -30,5 +32,13 @@ object HistoricalWeatherBroadcastModule {
     @Provides
     fun provideChannelDao(weatherDataBase: WeatherDataBase): HistoricalWeatherBroadcastDao {
         return weatherDataBase.channelDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideHistoricalWeatherBroadcastRepository(
+        remote: HistoricalWeatherBroadcastDao,
+    ): HistoricalWeatherBroadcastRepository {
+        return HistoricalWeatherBroadcastRepositoryImpl(remote)
     }
 }
