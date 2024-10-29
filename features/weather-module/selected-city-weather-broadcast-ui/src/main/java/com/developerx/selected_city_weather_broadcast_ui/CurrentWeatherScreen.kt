@@ -26,8 +26,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.developerx.models.dto.BroadCastWeather
-import com.developerx.models.dto.City
-import com.developerx.models.dto.CurrentWeatherResponse
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -75,12 +73,8 @@ fun CurrentWeatherScreen(
                     style = MaterialTheme.typography.bodyLarge.copy(fontSize = 90.sp)
                 )
                 Text(
-
                     text = "°",
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        color = Color.White,
-                        fontSize = 50.sp
-                    ),
+                    style = MaterialTheme.typography.bodyMedium.copy(fontSize = 50.sp),
                     modifier = Modifier.align(Alignment.Bottom)
                 )
             }
@@ -198,7 +192,7 @@ fun formatDate(dateString: String): String {
 @Preview(showBackground = true)
 @Composable
 fun PreviewWeatherScreen() {
-    CurrentWeatherScreen{
+    CurrentWeatherScreen {
 
     }
 }

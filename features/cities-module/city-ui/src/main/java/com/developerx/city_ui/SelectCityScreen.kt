@@ -39,7 +39,7 @@ fun SelectCityScreenContent(
 
     if (citiesStates.cities.isEmpty().not()) {
         FilterableDropdownMenu(citiesStates.cities, onItemClicked = {
-            navigateToCurrentWeatherView(citiesStates.selectedCity!!)
+            navigateToCurrentWeatherView(it)
         })
     }
 }
