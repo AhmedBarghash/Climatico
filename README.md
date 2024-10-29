@@ -24,7 +24,7 @@ at first and then will change the base URL for the endpoint in run time **domain
 ## 📚 Package Structure
 
 ```
-com.developerx.climatico                  # ROOT PACKAGE
+com.developerx.climatico                                        # ROOT PACKAGE
 │
 ├── App
 ├────presentation                                               # presentation folder for screens in the app.
