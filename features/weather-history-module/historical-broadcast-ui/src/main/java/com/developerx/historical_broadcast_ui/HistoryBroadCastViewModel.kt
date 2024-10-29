@@ -3,14 +3,11 @@ package com.developerx.historical_broadcast_ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.developerx.core.common.onError
-import com.developerx.core.common.onSuccess
 import com.developerx.historical_broadcast_domain.usecase.GetLastBroadcastDataUseCase
 import com.developerx.historical_broadcast_domain.usecase.SaveLastBroadCastDataUseCase
 import com.developerx.models.LocalWeatherCharacteristics
 import com.developerx.models.dto.City
 import com.developerx.models.dto.CurrentWeatherResponse
-import com.developerx.historical_broadcast_domain.NoRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
