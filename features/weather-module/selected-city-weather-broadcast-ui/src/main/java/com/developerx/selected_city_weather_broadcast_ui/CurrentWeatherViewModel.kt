@@ -47,18 +47,14 @@ class CurrentWeatherViewModel @Inject constructor(
     }
 
     fun setWeatherData(localWeatherCharacteristics: LocalWeatherCharacteristics) {
-        store.dispatch(
-            CurrentWeatherScreenActions.SetCurrentWeather(
-                mapWeatherDataTOSaveItInDatabase(localWeatherCharacteristics)
-            )
-        )
+        store.dispatch(CurrentWeatherScreenActions.SetCurrentWeather(mapWeatherDataTOSaveItInDatabase(localWeatherCharacteristics)))
         fetchWeekBroadcast(localWeatherCharacteristics.lat, localWeatherCharacteristics.lon)
     }
 
     private fun mapWeatherDataTOSaveItInDatabase(localWeatherCharacteristics: LocalWeatherCharacteristics): CurrentWeatherResponse {
         return CurrentWeatherResponse(
             name = localWeatherCharacteristics.name,
-            weather = arrayListOf(Weather(main = localWeatherCharacteristics.weatherStatus)),
+            weather = arrayListOf(Weather(main = localWeatherCharacteristics.weatherStatus, icon = localWeatherCharacteristics.icon)),
             main = Main(
                 tempMax = localWeatherCharacteristics.tempMax.toDouble(),
                 tempMin = localWeatherCharacteristics.tempMin.toDouble(),

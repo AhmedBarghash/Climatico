@@ -18,7 +18,6 @@ class HistoricalWeatherBroadcastRepositoryImpl
         return historicalWeatherBroadcastDao.getWeatherHistory()
     }
 
-
     override suspend fun addNewHistoricalWeatherBroadcastRecord(localWeatherCharacteristics: LocalWeatherCharacteristics): Long {
         return historicalWeatherBroadcastDao.insert(localWeatherCharacteristics)
     }

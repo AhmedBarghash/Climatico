@@ -23,7 +23,7 @@ class HistoryBroadCastViewModel @Inject constructor(
         currentWeatherData: CurrentWeatherResponse,
     ) {
         viewModelScope.launch {
-            val saveStatus = saveLastBroadCastDataUseCase(
+            saveLastBroadCastDataUseCase(
                 SaveLastBroadCastDataUseCase.Request(
                     mapWeatherDataTOSaveItInDatabase(
                         selectedCity,
@@ -31,7 +31,6 @@ class HistoryBroadCastViewModel @Inject constructor(
                     )
                 )
             )
-            Log.i("Hello", saveStatus.toString())
         }
     }
 
@@ -45,7 +44,7 @@ class HistoryBroadCastViewModel @Inject constructor(
             cityNameEn = selectedCity.cityNameEn,
             lat = selectedCity.lat,
             lon = selectedCity.lon,
-
+            icon = currentWeatherData.weather[0].icon.toString(),
             name = currentWeatherData.name,
             weatherStatus = currentWeatherData.weather[0].main.toString(),
             currentTemp = currentWeatherData.main.temp.toString(),
@@ -56,9 +55,12 @@ class HistoryBroadCastViewModel @Inject constructor(
 
     fun loadLastedSearchedCityWeatherData(onLoadFinished: (response: LocalWeatherCharacteristics) -> Unit) {
         viewModelScope.launch {
-            val response = getLastBroadcastDataUseCase()
-            if (response != null) {
-                onLoadFinished(response)
+            val latestWeather = getLastBroadcastDataUseCase()
+            if (latestWeather != null) {
+                Log.d("LatestWeather", "Retrieved: $latestWeather")
+                onLoadFinished(latestWeather)
+            } else {
+                Log.d("LatestWeather", "No data found.")
             }
         }
     }

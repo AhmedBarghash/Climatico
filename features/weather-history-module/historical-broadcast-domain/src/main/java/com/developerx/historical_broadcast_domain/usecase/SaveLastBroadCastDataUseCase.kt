@@ -4,10 +4,7 @@ import com.developerx.historical_broadcast_domain.repositories.HistoricalWeather
 import com.developerx.models.LocalWeatherCharacteristics
 import javax.inject.Inject
 
-class SaveLastBroadCastDataUseCase @Inject constructor(
-    private val currentWeatherRepository: HistoricalWeatherBroadcastRepository
-) {
-
+class SaveLastBroadCastDataUseCase @Inject constructor(private val currentWeatherRepository: HistoricalWeatherBroadcastRepository) {
     suspend operator fun invoke(params: Request): Long {
         return currentWeatherRepository.addNewHistoricalWeatherBroadcastRecord(params.weatherRecord)
     }

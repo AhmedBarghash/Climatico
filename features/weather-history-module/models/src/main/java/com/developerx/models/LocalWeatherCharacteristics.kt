@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "weather_history_Characteristics")
 data class LocalWeatherCharacteristics(
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val timestamp: Long = System.currentTimeMillis(),
     var cityId: Int,
     // City Info
     var cityNameAr: String,
@@ -15,6 +16,7 @@ data class LocalWeatherCharacteristics(
 
     // Current Weather Info
     var name: String,
+    var icon: String,
     var weatherStatus: String,
     var currentTemp:String,
     var tempMax: String,

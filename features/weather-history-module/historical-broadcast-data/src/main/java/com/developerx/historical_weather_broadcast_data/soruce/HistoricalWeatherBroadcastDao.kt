@@ -12,6 +12,6 @@ interface HistoricalWeatherBroadcastDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(localWeatherCharacteristics: LocalWeatherCharacteristics): Long
 
-    @Query("SELECT * FROM weather_history_Characteristics ORDER BY cityId DESC LIMIT 1")
+    @Query("SELECT * FROM weather_history_Characteristics ORDER BY timestamp DESC LIMIT 1")
     suspend fun getWeatherHistory(): LocalWeatherCharacteristics
 }

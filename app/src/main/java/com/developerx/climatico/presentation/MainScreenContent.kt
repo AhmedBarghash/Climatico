@@ -1,5 +1,6 @@
 package com.developerx.climatico.presentation
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -66,36 +67,34 @@ fun MainScreenContent() {
             if (it != null) {
                 citiesViewModel.setSelectedCity(it)
                 currentWeatherViewModel.fetchWeatherDataBasedOnCoordinates(it.lat, it.lon)
-            }
-        }
-
-        historyBroadCastViewModel.loadLastedSearchedCityWeatherData {
-            if (it != null) {
-                citiesViewModel.setSelectedCity(
-                    City(
-                        it.cityId,
-                        it.cityNameAr,
-                        it.cityNameEn,
-                        it.lat,
-                        it.lon
+                if (citiesStates.selectedCity != null && currentWeatherViewModelStates.currentWeatherData != null) {
+                    historyBroadCastViewModel.saveWeatherDataInDatabase(
+                        citiesStates.selectedCity!!,
+                        currentWeatherViewModelStates.currentWeatherData!!
                     )
-                )
-                currentWeatherViewModel.setWeatherData(it)
+                }
             }
         }
 
         // show the empty screen in case there no data from the data base
         if (currentWeatherViewModelStates.currentWeatherData == null) {
-            Spacer(modifier = Modifier.height(16.dp))
-            EmptyScreenView()
+            historyBroadCastViewModel.loadLastedSearchedCityWeatherData {
+                if (it != null) {
+                    citiesViewModel.setSelectedCity(
+                        City(
+                            it.cityId,
+                            it.cityNameAr,
+                            it.cityNameEn,
+                            it.lat,
+                            it.lon
+                        )
+                    )
+                    currentWeatherViewModel.setWeatherData(it)
+                }
+            }
         } else {
             // Load the view for the Selected City
-            CurrentWeatherScreen{
-                historyBroadCastViewModel.saveWeatherDataInDatabase(
-                    citiesStates.selectedCity!!,
-                    currentWeatherViewModelStates.currentWeatherData!!
-                )
-            }
+            CurrentWeatherScreen{}
         }
     }
 }
