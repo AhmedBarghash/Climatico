@@ -1,4 +1,4 @@
-package com.developerx.android.base.android
+package com.developerx.base.android
 
 import org.junit.Test
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Climatico</string>
+    <string name="empty_screen_title">No Data Available</string>
+    <string name="empty_screen_message">Please Search on the City you need or click on the drop down menu and select city to see weather data.</string>
 </resources>

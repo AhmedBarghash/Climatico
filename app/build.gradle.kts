@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
+
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
 }
@@ -44,9 +46,6 @@ android {
         buildConfig = true
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.13"
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -75,21 +74,28 @@ dependencies {
 
     /* Projects */
 
+    implementation(project(":features:models"))
     implementation(project(":models"))
     implementation(project(":core:common"))
     implementation(project(":core:core-data"))
     implementation(project(":core:core-domain"))
     implementation(project(":base-android"))
-//
-//    implementation(project(":feature:image-verification:verify-image-data"))
-//    implementation(project(":feature:image-verification:verify-image-domain"))
-//
-//    implementation(project(":feature:otp:otp-data"))
-//    implementation(project(":feature:otp:otp-domain"))
 
     implementation(project(":features:cities-module:city-ui"))
     implementation(project(":features:cities-module:city-data"))
     implementation(project(":features:cities-module:city-domain"))
+
+    implementation(project(":features:weather-module:selected-city-weather-broadcast-data"))
+    implementation(project(":features:weather-module:selected-city-weather-broadcast-domain"))
+    implementation(project(":features:weather-module:selected-city-weather-broadcast-ui"))
+
+    implementation(project(":features:weather-history-module:historical-broadcast-data"))
+    implementation(project(":features:weather-history-module:historical-broadcast-domain"))
+    implementation(project(":features:weather-history-module:historical-broadcast-ui"))
+
+
+    implementation( libs.accompanist.pager)
+    implementation( libs.accompanist.pager.indicators)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -114,7 +120,6 @@ dependencies {
     implementation(libs.accompanist.permissions)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.ui.test.junit4)
 
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

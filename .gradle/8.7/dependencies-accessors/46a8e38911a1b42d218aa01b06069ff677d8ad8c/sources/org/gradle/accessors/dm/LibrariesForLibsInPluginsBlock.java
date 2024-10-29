@@ -1223,7 +1223,7 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
         public Provider<String> getComposeBom() { return getVersion("composeBom"); }
 
         /**
-         * Version alias <b>composeMaterial</b> with value <b>1.3.1</b>
+         * Version alias <b>composeMaterial</b> with value <b>1.4.0</b>
          * <p>
          * If the version is a rich version and cannot be represented as a
          * single version string, an empty string is returned.

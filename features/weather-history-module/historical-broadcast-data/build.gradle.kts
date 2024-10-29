@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -24,19 +26,40 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "21"
     }
+    buildToolsVersion = "34.0.0"
 }
 
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}
 dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    // HILT
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
+    //ROOM dependencies
+    implementation( libs.androidx.room.ktx)
+    implementation( libs.androidx.room.rxjava2)
+    kapt(libs.androidx.room.compiler)
+
+    implementation(project(":features:models"))
+    implementation(project(":core:common"))
+    implementation(project(":core:core-data"))
+
+    implementation(project(":features:weather-history-module:historical-broadcast-domain"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

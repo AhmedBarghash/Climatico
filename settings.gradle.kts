@@ -21,7 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Climatico"
 include(":app")
-include(":models")
 include(":core:common")
 include(":core:core-data")
 include(":core:core-domain")
@@ -35,3 +34,5 @@ include(":features:weather-module:selected-city-weather-broadcast-ui")
 include(":features:weather-history-module:historical-broadcast-data")
 include(":features:weather-history-module:historical-broadcast-domain")
 include(":features:weather-history-module:historical-broadcast-ui")
+include(":features:models")
+include(":models")
