@@ -1,5 +1,5 @@
 
-# ّInsta + Android App
+# Climatico + Android App
 This is  modularized Android application that fetches and displays current weather as well as a  7-day forecast for a given city Functional Requirements:
 - Allow users to input a city name.
 - Display the current weather for that city including temperature, condition (e.g.,
